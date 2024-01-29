@@ -26,6 +26,53 @@ class boxShadowGenerator {
             this.webkitRule = webkitRule
             this.mozRule = mozRule
             }
+
+initialize() {
+
+    this.horizontalRef.value = this.horizontal.value;
+    this.verticalRef.value = this.vertical.value;
+    this.spreadRef.value = this.spread.value;
+    this.blurRef.value = this.blur.value;
+    
+    this.applyRule();
+    this.showRule();
+            }
+
+applyRule() {
+
+    this.previewBox.style.boxShadow = `${this.horizontalRef.value}px ${this.verticalRef.value}px ${this.spreadRef.value}px ${this.blurRef.value}px #000000`
+
+    this.currentRule = this.previewBox.style.boxShadow;
+    
+}
+
+showRule() {
+    this.rule.innerText = this.currentRule;
+    this.webkitRule.innerText = this.currentRule;
+    this.mozRule.innerText = this.currentRule;
+}
+
+updateValue(type, value) {
+
+    switch(type) {
+        case "horizontal":
+        this.horizontalRef.value = value;
+        break
+        case "vertical":
+        this.verticalRef.value = value;
+        break
+        case "spread":
+        this.spreadRef.value = value;
+        break
+        case "blur":
+        this.blurRef.value = value;
+        break
+    }
+
+     
+this.applyRule();
+this.showRule();
+}
 }
 
 // seleção de elementos
@@ -40,11 +87,12 @@ const spreadRef = document.querySelector("#spread-value");
  
 const previewBox = document.querySelector("#box");
 
-const rule = document.querySelector("rule-span");
-const webkitRule = document.querySelector("webkit-rule-span");
-const mozRule = document.querySelector("moz-rule-span");
+const rule = document.querySelector("#rule span");
+const webkitRule = document.querySelector("#webkit-rule span");
+const mozRule = document.querySelector("#moz-rule span");
 
 const boxShadow = new boxShadowGenerator(
+    horizontal,
     horizontalRef,
     vertical,
     verticalRef,
@@ -56,7 +104,31 @@ const boxShadow = new boxShadowGenerator(
      rule,
      webkitRule,
      mozRule
-)
+);
 
-console.log(boxShadow)
+boxShadow.initialize();
+
 // Eventos
+horizontal.addEventListener("input", (e) => {
+    const value = e.target.value
+
+    boxShadow.updateValue("horizontal", value);
+});
+
+vertical.addEventListener("input", (e) => {
+    const value = e.target.value
+
+    boxShadow.updateValue("vertical", value);
+});
+
+spread.addEventListener("input", (e) => {
+    const value = e.target.value
+
+    boxShadow.updateValue("spread", value);
+});
+
+blur.addEventListener("input", (e) => {
+    const value = e.target.value
+
+    boxShadow.updateValue("blur", value);
+});

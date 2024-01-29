@@ -82,12 +82,29 @@ h2{
     text-align: center;
 }
 
+/* Novas funcionalidades */
+
+#color-value{
+    min-width: 100px;
+}
+
+#inset{
+    align-self: start;
+    width: 20px;
+    height: 20px;
+}
+
 /* preview */
 
 #box {
     width: 100%;
     height: 300px;
     background-color: #941515;
+    box-shadow: rgb(0, 0, 0) 6px 9px 45px 23px;
+
+    -webkit-box-shadow: rgb(0, 0, 0) 6px 9px 45px 23px;
+    
+    -moz-box-shadow: rgb(0, 0, 0) 6px 9px 45px 23px;
 }
 
 /* area de geração */
@@ -106,4 +123,37 @@ h2{
     margin: 0 auto;
     border: 2px solid #941515;
     padding: 1rem;
+    transition: 0.4s;
+}
+
+#rules-area:hover{
+    background-color: #dfdfdf;
+}
+
+#copy-instructions{
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Responsivo */
+
+@media(max-width: 768px) {
+    #controçs-container,
+    #preview{
+        padding: 1rem 2rem;
+    }
+
+    #box-shadow-generator {
+        flex-direction: column;
+    }
+
+    #box {
+        width: 60%;
+        height: 200px;
+        margin: 0 auto;
+    }
+
+    #generated-rule {
+        margin-top: 1.5rem;
+    }
 }
